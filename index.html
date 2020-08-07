@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <style type="text/css" media="screen">
+      body { background-color: black; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vizceral/4.9.0/vizceral.min.js"></script>
+    <script>
+      function run () {
+        var viz = new Vizceral.default(document.getElementById('vizceral'));
+        viz.updateStyles({
+  colorText: 'rgb(214, 214, 214)',
+  colorTextDisabled: 'rgb(129, 129, 129)',
+  colorTraffic: {
+    normal: 'rgb(186, 213, 237)',
+    normalDonut: 'rgb(91, 91, 91)',
+    warning: 'rgb(268, 185, 73)',
+    danger: 'rgb(184, 36, 36)',
+  },
+  colorNormalDimmed: 'rgb(101, 117, 128)',
+  colorBackgroundDark: 'rgb(35, 35, 35)',
+  colorLabelBorder: 'rgb(16, 17, 18)',
+  colorLabelText: 'rgb(0, 0, 0)',
+  colorDonutInternalColor: 'rgb(35, 35, 35)',
+  colorDonutInternalColorHighlighted: 'rgb(255, 255, 255)',
+  colorConnectionLine: 'rgb(91, 91, 91)',
+  colorPageBackground: 'rgb(45, 45, 45)',
+  colorPageBackgroundTransparent: 'rgba(45, 45, 45, 0)',
+  colorBorderLines: 'rgb(137, 137, 137)',
+  colorArcBackground: 'rgb(60, 60, 60)'
+});
+        viz.updateData({
+          name: 'edge',
+          renderer: 'global',
+          entryNode: 'sre',
+          maxVolume: 100000,
+          nodes: [
+            {name: 'sre'},
+            {name: 'cafe'},
+            {name: 'pizza'},
+            {name: 'bugs'},
+            {name: 'python'},
+            {name: 'blagues'}
+          ],
+          connections: [
+            {
+              target: 'sre',
+              source: 'cafe',
+              metrics: { normal: 1000, warning: 40000, danger: 0  },
+              metadata: { streaming: true  }
+            },
+            {
+              source: 'sre',
+              target: 'blagues',
+              metrics: { normal: 20000, warning: 10950, danger: 1000  },
+              metadata: { streaming: true  }
+            },
+            {
+              source: 'pizza',
+              target: 'sre',
+              metrics: { normal: 20000, warning: 950, danger: 100  },
+              metadata: { streaming: true  }
+            },
+            {
+              source: 'sre',
+              target: 'python',
+              metrics: { normal: 30000, warning: 950, danger: 100  },
+              metadata: { streaming: true  }
+            },
+
+            {
+              source: 'sre',
+              target: 'bugs',
+              metrics: { normal: 0, warning: 950, danger: 500  },
+              metadata: { streaming: true  }
+            }
+          ]
+        });
+        viz.setView();
+        viz.animate();
+
+      }
+    </script>
+    <title>Vanilla Vizceral Example with Sample Data</title>
+  </head>
+  <body onload='run()'>
+    <canvas id='vizceral'></canvas>
+  </body>
+</html>
