@@ -30,46 +30,54 @@
 });
         viz.updateData({
           name: 'edge',
-          renderer: 'global',
+          renderer: 'region',
           entryNode: 'sre',
           maxVolume: 100000,
           nodes: [
             {name: 'sre'},
-            {name: 'cafe'},
-            {name: 'drum&bass'},
+            {name: 'wicked visual grammars'},
+            {name: 'drum n bass'},
+            {name: 'ansible-roles'},
             {name: 'bugs'},
+            {name: 'kubernetes stuffs'},
             {name: 'python'},
             {name: 'blagues'}
           ],
           connections: [
             {
-              target: 'sre',
-              source: 'cafe',
-              metrics: { normal: 1000, warning: 40000, danger: 0  },
-              metadata: { streaming: true  }
-            },
-            {
+              target: 'wicked visuals',
               source: 'sre',
-              target: 'blagues',
-              metrics: { normal: 20000, warning: 10950, danger: 1000  },
+              metrics: { normal: 10, warning: 40000, danger: 0  },
               metadata: { streaming: true  }
             },
             {
-              source: 'drum&bass',
-              target: 'sre',
-              metrics: { normal: 20000, warning: 950, danger: 100  },
-              metadata: { streaming: true  }
-            },
-            {
+              target: 'ansible-roles',
               source: 'sre',
+              metrics: { normal: 2000, warning: 1950, danger: 0  },
+              metadata: { streaming: true  }
+            },
+            {
+              target: 'kubernetes stuffs',
+              source: 'sre',
+              metrics: { normal: 2000, warning: 1950, danger: 0  },
+              metadata: { streaming: true  }
+            },
+            {
+              target: 'drum n bass',
+              source: 'sre',
+              metrics: { normal: 2000, warning: 950, danger: 100  },
+              metadata: { streaming: true  }
+            },
+            {
               target: 'python',
-              metrics: { normal: 30000, warning: 950, danger: 100  },
+              source: 'sre',
+              metrics: { normal: 3000, warning: 950, danger: 100  },
               metadata: { streaming: true  }
             },
 
             {
-              source: 'sre',
               target: 'bugs',
+              source: 'sre',
               metrics: { normal: 0, warning: 950, danger: 500  },
               metadata: { streaming: true  }
             }
